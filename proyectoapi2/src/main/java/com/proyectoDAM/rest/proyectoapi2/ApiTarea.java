@@ -73,21 +73,6 @@ public class ApiTarea {
 		return null;		
 	}
 	
-	//Editar una tarea
-	@PatchMapping("modificar-estado") //Modifica al que indica
-	public Tarea modificarEstado(@RequestParam int id) {		
-		for (Tarea tarea : tareas) {
-			//Buscará en la lista el elemento que tenga ese número
-			if(tarea.getId()==id) {
-				boolean obligatorio=tarea.isObligatorio();
-				tarea.setObligatorio(!obligatorio);	//le cambiará el flag de “obligatorio=true”/"opcional=false"
-					
-				return tarea;
-			}
-		}
-		return null;		
-	}
-	
 	//Eliminar tarea
 	@PostMapping("eliminar-tarea")
 	public Collection<Tarea> eliminarTarea(@RequestParam int id){

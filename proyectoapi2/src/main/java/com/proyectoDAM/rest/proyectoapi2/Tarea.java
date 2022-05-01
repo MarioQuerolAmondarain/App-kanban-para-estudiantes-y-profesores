@@ -9,7 +9,6 @@ public class Tarea {
 	private String descripcion;
 	private Date fechaLimite;
 	private Date fechaCreacion;
-	private boolean obligatorio;
 	
 	//Getters y Setters
 	public String getTitulo() {
@@ -41,12 +40,6 @@ public class Tarea {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public boolean isObligatorio() {
-		return obligatorio;
-	}
-	public void setObligatorio(boolean obligatorio) {
-		this.obligatorio = obligatorio;
 	}
 	
 }

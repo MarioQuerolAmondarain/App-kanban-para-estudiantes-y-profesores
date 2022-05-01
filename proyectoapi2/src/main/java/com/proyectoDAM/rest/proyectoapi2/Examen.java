@@ -9,6 +9,7 @@ public class Examen {
 	private String descripcion; //Opcional indicando temario
 	private Date fechaExamen;
 	private Date fechaCreacion;
+	private int numEvaluacion;
 	
 	//Getters y Setters
 	public String getTitulo() {
@@ -41,5 +42,10 @@ public class Examen {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+	public int getNumEvaluacion() {
+		return numEvaluacion;
+	}
+	public void setNumEvaluacion(int numEvaluacion) {
+		this.numEvaluacion = numEvaluacion;
+	}
 }

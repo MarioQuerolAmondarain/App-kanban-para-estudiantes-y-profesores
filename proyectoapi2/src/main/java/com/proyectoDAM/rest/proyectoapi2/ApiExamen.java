@@ -45,7 +45,7 @@ public class ApiExamen {
 		
 		for (Examen examen : examenes) {
 			if (examen.getId()==id) {
-				return null;//Tarea ya existe
+				return null;//Examen ya existe
 			}
 		}
 		
@@ -66,9 +66,7 @@ public class ApiExamen {
 				examen.setDescripcion(nuevoExamen.getDescripcion());	
 				examen.setFechaCreacion(nuevoExamen.getFechaCreacion());
 				examen.setFechaExamen(nuevoExamen.getFechaExamen());
-				
-//				boolean obligatorio=tarea.isObligatorio();
-//				tarea.setObligatorio(!obligatorio);	//le cambiará el flag de “obligatorio=true”/"opcional=false"
+				examen.setNumEvaluacion(nuevoExamen.getNumEvaluacion());
 				
 				return examen;
 			}

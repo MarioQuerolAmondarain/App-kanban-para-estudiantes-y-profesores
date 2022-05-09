@@ -3,6 +3,7 @@ package com.proyectoDAM.rest.proyectoapi2;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -42,6 +43,7 @@ public class ApiTarea {
 	@PostMapping("nueva-tarea")//Envío de Datos
 	public Collection<Tarea> nuevaTarea(@RequestBody Tarea nuevaTarea){
 		int id=nuevaTarea.getId();
+		Date fechaCreacion=new Date();
 		
 		for (Tarea tarea : tareas) {
 			if (tarea.getId()==id) {
@@ -49,6 +51,7 @@ public class ApiTarea {
 			}
 		}
 		
+		nuevaTarea.setFechaCreacion(fechaCreacion.toString());
 		nuevaTarea.setId(tareas.size()+1);
 		tareas.add(nuevaTarea);
 		return tareas;

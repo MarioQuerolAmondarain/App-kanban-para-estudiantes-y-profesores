@@ -1,5 +1,6 @@
-package com.proyectoDAM.rest.proyectoapi2;
-
+package clasesDistintas;
+import com.proyectoDAM.rest.proyectoapi2.InterfazBD;
+import com.proyectoDAM.rest.proyectoapi2.Proyectoapi2Application;
 public class TodoList {
 	
 	private int numero; 

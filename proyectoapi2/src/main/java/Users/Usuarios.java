@@ -1,5 +1,6 @@
-package com.proyectoDAM.rest.proyectoapi2;
-
+package Users;
+import com.proyectoDAM.rest.proyectoapi2.InterfazBD;
+import com.proyectoDAM.rest.proyectoapi2.Proyectoapi2Application;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;

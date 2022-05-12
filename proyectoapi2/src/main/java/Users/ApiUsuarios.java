@@ -42,13 +42,4 @@ public class ApiUsuarios {
 		
 	}
 	
-	@PostMapping
-	public ResponseEntity<Usuarios> crearUsuario(@RequestBody Usuarios nuevoUsuario){
-		
-		Usuarios createdUser.createdUser
-		return null;
-		
-		
-	}
-	
 }

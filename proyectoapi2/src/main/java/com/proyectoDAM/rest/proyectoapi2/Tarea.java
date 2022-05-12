@@ -2,8 +2,16 @@ package com.proyectoDAM.rest.proyectoapi2;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tareas") // Crea la tabla en la bd con el nombre indicado
 public class Tarea {
+	
 	//Atributos
+	@Id	//indica que es el identificador único para c/tarea que guardemos en la BD
 	private int id;
 	private String titulo;
 	private String descripcion;

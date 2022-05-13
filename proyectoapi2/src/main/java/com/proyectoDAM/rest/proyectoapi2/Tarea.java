@@ -12,7 +12,7 @@ public class Tarea {
 	
 	//Atributos
 	@Id	//indica que es el identificador único para c/tarea que guardemos en la BD
-	private int id;
+	private String id;
 	private String titulo;
 	private String descripcion;
 	private Date fechaLimite;
@@ -26,7 +26,7 @@ public class Tarea {
 	}
 	
 	//Constructor con parámetros
-	public Tarea(int id, String titulo, String descripcion, Date fechaLimite, Date fechaCreacion, EstadoTarea estado) {
+	public Tarea(String id, String titulo, String descripcion, Date fechaLimite, Date fechaCreacion, EstadoTarea estado) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -61,10 +61,10 @@ public class Tarea {
 //	public void setFechaCreacion(Date fechaCreacion) {
 //		this.fechaCreacion = fechaCreacion;
 //	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public EstadoTarea getEstado() {

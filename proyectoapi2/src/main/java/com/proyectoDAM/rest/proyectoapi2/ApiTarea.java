@@ -1,8 +1,5 @@
 package com.proyectoDAM.rest.proyectoapi2;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -28,97 +25,28 @@ public class ApiTarea {
 
 	@Autowired
 	private TareaServicio service;
-	
-	private static Collection<Tarea> tareas=Collections.synchronizedCollection(new ArrayList<>());//Usar Collection para sincronizar
-	
-	//Listar todas las tareas
-	@GetMapping("lista-tareas")//Pide algo
-	public Collection<Tarea> listarTareas(){	
-		return tareas;
-	}
-	
-	//Listar una tarea
-	@GetMapping("mostrar-tarea")
-	public Tarea mostrarTarea(@RequestParam int id) {
-		for (Tarea tarea : tareas) {
-			//Buscará en la lista el elemento que tenga ese identificador
-			if(tarea.getId()==id) {
-				return tarea;
-			}
-		}
-		return null;		
-	}
-	
-	//Crear una nueva tarea
-	@PostMapping("nueva-tarea")//Envío de Datos
-	public Collection<Tarea> nuevaTarea(@RequestBody Tarea nuevaTarea){
-		int id=nuevaTarea.getId();
-		Date fechaCreacion=new Date();
 		
-		for (Tarea tarea : tareas) {
-			if (tarea.getId()==id) {
-				return null;//Tarea ya existe
-			}
-		}
-		
-		nuevaTarea.setFechaCreacion(fechaCreacion.toString());
-		nuevaTarea.setId(tareas.size()+1);
-		tareas.add(nuevaTarea);
-		return tareas;
-	}
-	
-	//Editar una tarea
-	@PatchMapping("modificar-tarea") //Modifica al que indica
-	public Tarea modificarTarea(@RequestBody Tarea nuevaTarea) {
-		int numId=nuevaTarea.getId();
-		
-		for (Tarea tarea : tareas) {
-			//Buscará en la lista el elemento que tenga ese número
-			if(tarea.getId()==numId) {
-				tarea.setTitulo(nuevaTarea.getTitulo());
-				tarea.setDescripcion(nuevaTarea.getDescripcion());	
-				tarea.setFechaCreacion(nuevaTarea.getFechaCreacion());
-				tarea.setFechaLimite(nuevaTarea.getFechaLimite());
-				
-				return tarea;
-			}
-		}
-		return null;		
-	}
-	
-	//Eliminar tarea
-	@PostMapping("eliminar-tarea")
-	public Collection<Tarea> eliminarTarea(@RequestParam int id){
-		for (Tarea tarea : tareas) {
-			//Buscará en la lista el elemento que tenga ese identificador
-			if(tarea.getId()==id) {
-				tareas.remove(tarea);
-				return tareas;
-			}
-		}
-		return null;
-	}
-	
 	//ACTUALIZACIÓN DE CÓDIGO
+	
 	//Crear una nueva tarea
 	@PostMapping("crear-tarea")
 	public ResponseEntity<Tarea> crearTarea(@RequestBody Tarea nuevaTarea){	
-		int id=nuevaTarea.getId();
+		String id=nuevaTarea.getId();
 		Date fechaCreacion=new Date();
 			
 		List<Tarea> list=service.listTareas();
 		
-		for (Tarea tarea : tareas) {
+		for (Tarea tarea : list) {
 			if (tarea.getId()==id) {
-				//return null;//Tarea ya existe
-				return null;
+				return null;//Tarea ya existe
 			}
 		}
-			
+		//TODO: Increment automatic of id en BD
+		int n=Integer.parseInt(list.get(list.size()-1).getId());
+		//int tamañoLista=list.size()+1;	
 		nuevaTarea.setFechaCreacion(fechaCreacion.toString());
-		nuevaTarea.setId(list.size()+1);
-		tareas.add(nuevaTarea);
-		//
+		nuevaTarea.setId(String.valueOf(n+1));
+		
 		Tarea tareaCreada=service.create(nuevaTarea);
 		return ResponseEntity.status(HttpStatus.OK).body(tareaCreada);
 	}
@@ -132,40 +60,41 @@ public class ApiTarea {
 	
 	//Mostrar una sola tarea
 	@GetMapping("obtener-tarea")
-	public ResponseEntity<Tarea> obtenerTareaById(@RequestParam int id){	
+	public ResponseEntity<Tarea> obtenerTareaById(@RequestParam String id){	
 		Tarea tarea=service.getById(id).get();
 		return ResponseEntity.status(HttpStatus.OK).body(tarea);
 	}
 	
 	//Mostrar tarea por estado
-	@GetMapping("tareaPorEstado")
-	public ResponseEntity<List<Tarea>> obtenerTareaPorEstado(@RequestBody EstadoTarea estado){
-		List<Tarea> list=new ArrayList<>();
-		for (Tarea tarea : tareas) {
-			if (tarea.getEstado()==estado) {
-				list.add(tarea);
-			}
-		}
-		list=service.listTareas();
-		return ResponseEntity.status(HttpStatus.OK).body(list);
-	}
+//	@GetMapping("tareaPorEstado")
+//	public ResponseEntity<List<Tarea>> obtenerTareaPorEstado(@RequestBody EstadoTarea estado){
+//		List<Tarea> list=new ArrayList<>();
+//		for (Tarea tarea : tareas) {
+//			if (tarea.getEstado()==estado) {
+//				list.add(tarea);
+//			}
+//		}
+//		list=service.listTareas();
+//		return ResponseEntity.status(HttpStatus.OK).body(list);
+//	}
 	
-	//Editar una tarea
-	@PutMapping("actualizar-tarea")
+	//Actualizar una tarea
+	@PatchMapping("actualizar-tarea")
 	public ResponseEntity<Tarea> actualizarTarea(@RequestBody Tarea nuevaTarea) {
-		int numId=nuevaTarea.getId();
+		String numId=nuevaTarea.getId();
+		List<Tarea> list=service.listTareas();
 		
-		for (Tarea tarea : tareas) {
-			//Buscará en la lista el elemento que tenga ese id
-			if(tarea.getId()==numId) {
+		for (Tarea tarea : list) {
+			if (tarea.getId().equals(numId)) {
 				tarea.setTitulo(nuevaTarea.getTitulo());
 				tarea.setDescripcion(nuevaTarea.getDescripcion());	
-				tarea.setFechaCreacion(nuevaTarea.getFechaCreacion());
+				//tarea.setFechaCreacion(nuevaTarea.getFechaCreacion());
 				tarea.setFechaLimite(nuevaTarea.getFechaLimite());
 				tarea.setEstado(nuevaTarea.getEstado());
-				
-				tarea=service.getById(numId).get();
-				return ResponseEntity.status(HttpStatus.OK).body(tarea);
+							
+//				Tarea tareaActualizada=service.getById(numId).get();
+				Tarea tareaCreada=service.create(nuevaTarea);
+				return ResponseEntity.status(HttpStatus.OK).body(tareaCreada);
 			}
 		}
 		return null;		
@@ -173,7 +102,7 @@ public class ApiTarea {
 	
 	//Eliminar tarea
 	@DeleteMapping("eliminar-tarea")
-	public ResponseEntity<String> borrarTarea(@RequestParam int id){
+	public ResponseEntity<String> borrarTarea(@RequestParam String id){
 		boolean success=service.deleteById(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Se ha ejecutado la operación\nResultado : "+success);
 	}

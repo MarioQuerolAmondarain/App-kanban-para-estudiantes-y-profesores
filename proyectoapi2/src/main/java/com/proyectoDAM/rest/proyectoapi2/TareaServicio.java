@@ -20,20 +20,18 @@ public class TareaServicio {
 		return (List<Tarea>) repo.findAll();
 	}
 	
-	public Optional<Tarea> getById(int id) {
-		String identificador=String.valueOf(id);
-		return repo.findById(identificador);
+	public Optional<Tarea> getById(String id) {
+		return repo.findById(id);
 	}
 	
-	public boolean deleteById(int id) {
+	public boolean deleteById(String id) {
 		try {
-			String identificador=String.valueOf(id);
-			repo.deleteById(identificador);
+			repo.deleteById(id);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
-	
+
 }

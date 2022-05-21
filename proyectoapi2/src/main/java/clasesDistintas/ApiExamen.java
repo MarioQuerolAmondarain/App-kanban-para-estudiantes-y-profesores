@@ -2,7 +2,8 @@ package clasesDistintas;
 
 import java.util.ArrayList;
 
-import com.proyectoDAM.rest.proyectoapi2.InterfazBD;
+
+
 import com.proyectoDAM.rest.proyectoapi2.Proyectoapi2Application;
 import java.util.Collection;
 import java.util.Collections;

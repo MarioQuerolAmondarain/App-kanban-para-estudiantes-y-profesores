@@ -1,43 +1,93 @@
 package Users;
-import com.proyectoDAM.rest.proyectoapi2.InterfazBD;
-import com.proyectoDAM.rest.proyectoapi2.Proyectoapi2Application;
+import java.util.Collection;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="usuarios")// Crea la tabla en la bd con el nombre indicado
+@Table(name = "usuario", uniqueConstraints = @UniqueConstraint(columnNames = "email")) // Crea la tabla en la bd con el
+																						// nombre indicado y la
+																						// constraint
 public class Usuarios {
-	@Id // esta anotacion indica que el usuario id es el unico para todos los usuarios que creemos en la BD
-	private int id;
-	private String name;
+	@Id // esta anotacion indica que el usuario id es el unico para todos los usuarios
+		// que creemos en la BD
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // es un incrementable el ID por eso tiene estrategia
+
+	private Long id;
+
+	@Column(name = "nombre")
+	private String nombre;
+	@Column(name = "apellido")
+	private String apellido;
 	private String email;
-	//private String pasword;
-	public Usuarios() {
-		
-	}
-	
-	public Usuarios(int id, String name, String email) {
-		
-		//this.id = id;
-		this.name = name;
+	private String contraseña;
+	/*
+	 * se va a relacionar el id del usuario con el id de rol por una tabla
+	 * intermedia, un usuario puede tener varios roles.
+	 */
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
+
+	private Collection<Rol> roles;
+	// constructor completo
+
+	public Usuarios(Long id, String nombre, String apellido, String email, String contraseña, Collection<Rol> roles) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
 		this.email = email;
+		this.contraseña = contraseña;
+		this.roles = roles;
 	}
 
-	public int getId() {
+	// constructor sin id
+	public Usuarios(String nombre, String apellido, String email, String contraseña, Collection<Rol> roles) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.contraseña = contraseña;
+		this.roles = roles;
+	}
+
+	// constructor vacío
+
+	public Usuarios() {
+		super();
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public String getEmail() {
@@ -47,7 +97,21 @@ public class Usuarios {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
+	public String getContraseña() {
+		return contraseña;
+	}
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+
+	public Collection<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Rol> roles) {
+		this.roles = roles;
+	}
 
 }

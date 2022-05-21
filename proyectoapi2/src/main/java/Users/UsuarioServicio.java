@@ -1,10 +1,8 @@
 package Users;
 
-import org.springframework.stereotype.Service;
-
-@Service
-public class UsuarioServicio {
-
-
+public interface UsuarioServicio {
 	
+	//metodo que va a guardar el usuario
+	public Usuarios guardar(UsuarioRegistroDTO registroDTO);
+
 }

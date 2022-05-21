@@ -1,6 +1,7 @@
 package com.proyectoDAM.rest.proyectoapi2;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ public class TareaServicio {
 	
 	public Tarea create(Tarea tarea) {
 		return repo.save(tarea);
+		
 	}
 	
 	public List<Tarea> listTareas(){

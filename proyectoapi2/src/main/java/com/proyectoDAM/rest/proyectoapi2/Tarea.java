@@ -7,36 +7,31 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tareas") // Crea la tabla en la bd con el nombre indicado
+@Table(name = "tareas")
 public class Tarea {
 	
-	//Atributos
-	@Id	//indica que es el identificador único para c/tarea que guardemos en la BD
+	@Id	
 	private String id;
 	private String titulo;
 	private String descripcion;
 	private Date fechaLimite;
-//	private Date fechaCreacion;
-	private String fechaCreacion;
 	private EstadoTarea estado;
+	private PrioridadTareas prioridad;
 	
-	//Contructor sin parámetros
 	public Tarea() {
 		super();
 	}
-	
-	//Constructor con parámetros
-	public Tarea(String id, String titulo, String descripcion, Date fechaLimite, Date fechaCreacion, EstadoTarea estado) {
+
+	public Tarea(String id, String titulo, String descripcion, Date fechaLimite, EstadoTarea estado, PrioridadTareas prioridad) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.fechaLimite = fechaLimite;
-//		this.fechaCreacion = fechaCreacion;
 		this.estado = estado;
+		this.prioridad = prioridad;
 	}
 
-	//Getters y Setters
 	public String getTitulo() {
 		return titulo;
 	}
@@ -55,12 +50,6 @@ public class Tarea {
 	public void setFechaLimite(Date fechaLimite) {
 		this.fechaLimite = fechaLimite;
 	}
-//	public Date getFechaCreacion() {
-//		return fechaCreacion;
-//	}
-//	public void setFechaCreacion(Date fechaCreacion) {
-//		this.fechaCreacion = fechaCreacion;
-//	}
 	public String getId() {
 		return id;
 	}
@@ -73,11 +62,11 @@ public class Tarea {
 	public void setEstado(EstadoTarea estado) {
 		this.estado = estado;
 	}
-	
-	public String getFechaCreacion() {
-		return fechaCreacion;
+	public PrioridadTareas getPrioridad() {
+		return prioridad;
 	}
-	public void setFechaCreacion(String fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
+
+	public void setPrioridad(PrioridadTareas prioridad) {
+		this.prioridad = prioridad;
 	}
 }

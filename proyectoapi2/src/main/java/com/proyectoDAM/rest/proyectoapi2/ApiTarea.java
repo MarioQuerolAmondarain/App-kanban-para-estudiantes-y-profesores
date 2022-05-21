@@ -32,19 +32,26 @@ public class ApiTarea {
 	@PostMapping("crear-tarea")
 	public ResponseEntity<Tarea> crearTarea(@RequestBody Tarea nuevaTarea){	
 		String id=nuevaTarea.getId();
-		Date fechaCreacion=new Date();
+		// Date fechaCreacion=new Date();
 			
 		List<Tarea> list=service.listTareas();
-		
-		for (Tarea tarea : list) {
-			if (tarea.getId()==id) {
-				return null;//Tarea ya existe
+		if(!list.isEmpty())
+		{			
+			for (Tarea tarea : list) {
+				if (tarea.getId()==id) {
+					return null;//Tarea ya existe
+				}
 			}
 		}
 		//TODO: Increment automatic of id en BD
-		int n=Integer.parseInt(list.get(list.size()-1).getId());
+		int n;
+		if(list.size() > 0) {
+			n = Integer.parseInt(list.get(list.size()-1).getId());			
+		} else {
+			n = 0;
+		}
 		//int tamañoLista=list.size()+1;	
-		nuevaTarea.setFechaCreacion(fechaCreacion.toString());
+		//nuevaTarea.setFechaCreacion(fechaCreacion.toString());
 		nuevaTarea.setId(String.valueOf(n+1));
 		
 		Tarea tareaCreada=service.create(nuevaTarea);

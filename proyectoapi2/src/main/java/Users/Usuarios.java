@@ -1,5 +1,7 @@
 package Users;
+
 import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "usuario", uniqueConstraints = @UniqueConstraint(columnNames = "email")) // Crea la tabla en la bd con el
+@Table(name = "usuario"/*, uniqueConstraints = @UniqueConstraint(columnNames = "email")*/) // Crea la tabla en la bd con el
 																						// nombre indicado y la
 																						// constraint
 public class Usuarios {
@@ -23,7 +25,6 @@ public class Usuarios {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // es un incrementable el ID por eso tiene estrategia
 
 	private Long id;
-
 	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "apellido")
@@ -34,36 +35,27 @@ public class Usuarios {
 	 * se va a relacionar el id del usuario con el id de rol por una tabla
 	 * intermedia, un usuario puede tener varios roles.
 	 */
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
+//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
 
-	private Collection<Rol> roles;
+//	private Collection<Rol> roles;
 	// constructor completo
 
-	public Usuarios(Long id, String nombre, String apellido, String email, String contraseña, Collection<Rol> roles) {
+
+
+	// constructor vacío
+
+	public Usuarios() {
+		super();
+	}
+
+	public Usuarios(Long id, String nombre, String apellido, String email, String contraseña) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
 		this.contraseña = contraseña;
-		this.roles = roles;
-	}
-
-	// constructor sin id
-	public Usuarios(String nombre, String apellido, String email, String contraseña, Collection<Rol> roles) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.email = email;
-		this.contraseña = contraseña;
-		this.roles = roles;
-	}
-
-	// constructor vacío
-
-	public Usuarios() {
-		super();
 	}
 
 	public Long getId() {
@@ -106,12 +98,12 @@ public class Usuarios {
 		this.contraseña = contraseña;
 	}
 
-	public Collection<Rol> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Collection<Rol> roles) {
-		this.roles = roles;
-	}
+//	public Collection<Rol> getRoles() {
+//		return roles;
+//	}
+//
+//	public void setRoles(Collection<Rol> roles) {
+//		this.roles = roles;
+//	}
 
 }

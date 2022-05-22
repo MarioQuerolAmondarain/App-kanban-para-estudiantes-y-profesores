@@ -1,37 +1,48 @@
 package Users;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.List;
 
-@Controller
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+
+
+
+@RestController
 @RequestMapping("api/usuarios")
 public class UsuarioControlador {
 	@Autowired
-	private UsuarioServicio usuarioServicio;
+	private UsuarioServicioI service;
 	
-	@ModelAttribute("usuario")// devuelve el usuario nuevo
-	public UsuarioRegistroDTO devuelveUsuarioNuevo() {
-		return new UsuarioRegistroDTO();
-		
-	}
-	@GetMapping // muestra el formulario de registro
+	@PostMapping("crear-usuario")
 	
-	public String mostrarFormularioRegistro() {
+	public ResponseEntity<String>crearUsuario(@RequestBody Usuarios nuevo){
 		
-		return "registro";
+		String email=nuevo.getEmail();
+		List<Usuarios>list=service.listaUsuarios();
+		if(!list.isEmpty()) {
+			for (Usuarios usuarios : list) {
+			
+				if(usuarios.getEmail().equals(email)) {
+					
+					return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El usuario " + email + " ya existe");
+				}
+				
+			}
+		}
+		Usuarios nuevoUsuario=service.crear(nuevo);
 		
-	}
-	@PostMapping // registra el usuario y lo guarda
-	public String registrarUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO) {
-		usuarioServicio.guardar(registroDTO);
-		return "redirect:/registro exito";
-		
+		return ResponseEntity.status(HttpStatus.OK).body("Se ha creado el Usuario");
 	}
 	
-
-
+	
+	
+	
 }

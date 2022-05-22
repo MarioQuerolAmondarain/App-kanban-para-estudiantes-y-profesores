@@ -31,7 +31,7 @@ public class ApiTarea {
 	//Crear una nueva tarea
 	@PostMapping("crear-tarea")
 	public ResponseEntity<Tarea> crearTarea(@RequestBody Tarea nuevaTarea){	
-		String id=nuevaTarea.getId();
+		Long id=nuevaTarea.getId();
 		// Date fechaCreacion=new Date();
 			
 		List<Tarea> list=service.listTareas();
@@ -43,16 +43,6 @@ public class ApiTarea {
 				}
 			}
 		}
-		//TODO: Increment automatic of id en BD
-		int n;
-		if(list.size() > 0) {
-			n = Integer.parseInt(list.get(list.size()-1).getId());			
-		} else {
-			n = 0;
-		}
-		//int tamañoLista=list.size()+1;	
-		//nuevaTarea.setFechaCreacion(fechaCreacion.toString());
-		nuevaTarea.setId(String.valueOf(n+1));
 		
 		Tarea tareaCreada=service.create(nuevaTarea);
 		return ResponseEntity.status(HttpStatus.OK).body(tareaCreada);
@@ -67,7 +57,7 @@ public class ApiTarea {
 	
 	//Mostrar una sola tarea
 	@GetMapping("obtener-tarea")
-	public ResponseEntity<Tarea> obtenerTareaById(@RequestParam String id){	
+	public ResponseEntity<Tarea> obtenerTareaById(@RequestParam Long id){		
 		Tarea tarea=service.getById(id).get();
 		return ResponseEntity.status(HttpStatus.OK).body(tarea);
 	}
@@ -88,7 +78,7 @@ public class ApiTarea {
 	//Actualizar una tarea
 	@PatchMapping("actualizar-tarea")
 	public ResponseEntity<Tarea> actualizarTarea(@RequestBody Tarea nuevaTarea) {
-		String numId=nuevaTarea.getId();
+		Long numId=nuevaTarea.getId();
 		List<Tarea> list=service.listTareas();
 		
 		for (Tarea tarea : list) {
@@ -99,7 +89,6 @@ public class ApiTarea {
 				tarea.setFechaLimite(nuevaTarea.getFechaLimite());
 				tarea.setEstado(nuevaTarea.getEstado());
 							
-//				Tarea tareaActualizada=service.getById(numId).get();
 				Tarea tareaCreada=service.create(nuevaTarea);
 				return ResponseEntity.status(HttpStatus.OK).body(tareaCreada);
 			}
@@ -109,7 +98,7 @@ public class ApiTarea {
 	
 	//Eliminar tarea
 	@DeleteMapping("eliminar-tarea")
-	public ResponseEntity<String> borrarTarea(@RequestParam String id){
+	public ResponseEntity<String> borrarTarea(@RequestParam Long id){
 		boolean success=service.deleteById(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Se ha ejecutado la operación\nResultado : "+success);
 	}

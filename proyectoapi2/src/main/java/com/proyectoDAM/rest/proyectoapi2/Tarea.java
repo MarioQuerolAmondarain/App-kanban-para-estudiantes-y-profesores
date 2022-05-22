@@ -3,6 +3,8 @@ package com.proyectoDAM.rest.proyectoapi2;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,8 +12,9 @@ import javax.persistence.Table;
 @Table(name = "tareas")
 public class Tarea {
 	
-	@Id	
-	private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // es un incrementable el ID por eso tiene estrategia
+	private Long id;
 	private String titulo;
 	private String descripcion;
 	private Date fechaLimite;
@@ -22,7 +25,7 @@ public class Tarea {
 		super();
 	}
 
-	public Tarea(String id, String titulo, String descripcion, Date fechaLimite, EstadoTarea estado, PrioridadTareas prioridad) {
+	public Tarea(Long id, String titulo, String descripcion, Date fechaLimite, EstadoTarea estado, PrioridadTareas prioridad) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -50,10 +53,10 @@ public class Tarea {
 	public void setFechaLimite(Date fechaLimite) {
 		this.fechaLimite = fechaLimite;
 	}
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public EstadoTarea getEstado() {

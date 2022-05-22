@@ -22,11 +22,11 @@ public class TareaServicio {
 		return (List<Tarea>) repo.findAll();
 	}
 	
-	public Optional<Tarea> getById(String id) {
+	public Optional<Tarea> getById(Long id) {
 		return repo.findById(id);
 	}
 	
-	public boolean deleteById(String id) {
+	public boolean deleteById(Long id) {
 		try {
 			repo.deleteById(id);
 			return true;

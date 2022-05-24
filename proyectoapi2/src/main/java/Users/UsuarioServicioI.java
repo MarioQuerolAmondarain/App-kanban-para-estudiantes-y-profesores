@@ -2,8 +2,12 @@ package Users;
 
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.proyectoDAM.rest.proyectoapi2.Tarea;
 
 @Service
 public class UsuarioServicioI{
@@ -28,6 +32,11 @@ public class UsuarioServicioI{
 		
 		return  (List<Usuarios>) usuarioRepo.findAll();
 		
+		
+	}
+	
+	public Optional<Usuarios> getById(String email) {
+		return usuarioRepo.findById(email);
 		
 	}
 	

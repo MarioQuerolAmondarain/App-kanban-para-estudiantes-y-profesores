@@ -1,5 +1,8 @@
 package Users;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
@@ -14,6 +17,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+
 
 @Entity
 @Table(name = "usuario"/*, uniqueConstraints = @UniqueConstraint(columnNames = "email")*/) // Crea la tabla en la bd con el
@@ -91,11 +96,31 @@ public class Usuarios {
 	}
 
 	public String getContraseña() {
+		
+		
 		return contraseña;
 	}
 
 	public void setContraseña(String contraseña) {
+	
 		this.contraseña = contraseña;
+	}
+	
+	public static String getSHA256(String contraseña) {
+
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA3-256");
+			byte[] messageDigest = md.digest(contraseña.getBytes());
+			BigInteger number = new BigInteger(1, messageDigest);
+			String hashtext = number.toString(16);
+
+			while (hashtext.length() < 32) {
+				hashtext = "0" + hashtext;
+			}
+			return hashtext;
+		} catch (NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 //	public Collection<Rol> getRoles() {

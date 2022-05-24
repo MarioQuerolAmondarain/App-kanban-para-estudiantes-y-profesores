@@ -25,7 +25,7 @@ import javax.persistence.UniqueConstraint;
 																						// nombre indicado y la
 																						// constraint
 public class Usuarios {
-	@Id // esta anotacion indica que el usuario id es el unico para todos los usuarios
+	// esta anotacion indica que el usuario id es el unico para todos los usuarios
 		// que creemos en la BD
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // es un incrementable el ID por eso tiene estrategia
 
@@ -34,6 +34,7 @@ public class Usuarios {
 	private String nombre;
 	@Column(name = "apellido")
 	private String apellido;
+	@Id
 	private String email;
 	private String contraseña;
 	/*

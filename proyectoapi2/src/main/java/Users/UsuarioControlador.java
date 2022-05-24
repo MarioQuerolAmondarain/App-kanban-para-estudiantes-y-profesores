@@ -1,8 +1,7 @@
 package Users;
 
 import java.util.List;
-
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,11 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectoDAM.rest.proyectoapi2.Tarea;
-
-
 
 @RestController
 @RequestMapping("api/usuarios")
@@ -42,44 +40,32 @@ public class UsuarioControlador {
 		}
 		
 		
-		String contraseñaEncriptada=nuevo.getSHA256(nuevo.getContraseña());
-		nuevo.setContraseña(contraseñaEncriptada);
+		String contrasenaEncriptada=nuevo.getSHA256(nuevo.getContraseña());
+		nuevo.setContraseña(contrasenaEncriptada);
 		
 		Usuarios nuevoUsuario=service.crear(nuevo);
 		
 		return ResponseEntity.status(HttpStatus.OK).body("Se ha creado el Usuario \n" + nuevoUsuario);
 	}
 	
-	@GetMapping("login-usuario")
 	
-	public ResponseEntity<String> logarUsuario(@RequestBody Usuarios log){
-		List<Usuarios> list=service.listaUsuarios();
-		
-		String contrasenaEncriptada=log.getSHA256(log.getContraseña());
-		String email=log.getEmail();
+	@GetMapping("login-usuario")
+	public ResponseEntity<String> logarUsuario(@RequestBody AuthUser userAuth){
 		
 		
-		if(!list.isEmpty()) {
-
-			for (Usuarios usuarios : list) {
-				
-				if((usuarios.getEmail().equals(email))&&(usuarios.getContraseña().equals(contrasenaEncriptada))) {
-					
-					return ResponseEntity.status(HttpStatus.OK).body("El login es correcto \n" + contrasenaEncriptada );
+		Usuarios usuario=service.getById(userAuth.getEmail()).get();
+		String contrasenaEncriptada=Usuarios.getSHA256(userAuth.getContraseña());
+		
 			
-				}else {
-					
-					return ResponseEntity.status(HttpStatus.OK).body("El login es incorrecto \n" + email);
+				
+				if (usuario.getContraseña().equals(contrasenaEncriptada)){
+					return ResponseEntity.status(HttpStatus.OK).body("El login es correcto " );	
 					
 				}
-			}	
-		}
+					
 		
-		
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario no existe tienes que darte de alta" );
-		
-		
-	}
-	
-	
+					
+			return ResponseEntity.status(HttpStatus.OK).body("El login es incorrecto \n"  );
+	}	
+
 }

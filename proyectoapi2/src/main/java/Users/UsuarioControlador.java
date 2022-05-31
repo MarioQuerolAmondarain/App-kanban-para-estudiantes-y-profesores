@@ -23,7 +23,6 @@ public class UsuarioControlador {
 	private UsuarioServicioI service;
 	
 	@PostMapping("crear-usuario")
-	
 	public ResponseEntity<String>crearUsuario(@RequestBody Usuarios nuevo){
 		
 		String email=nuevo.getEmail();

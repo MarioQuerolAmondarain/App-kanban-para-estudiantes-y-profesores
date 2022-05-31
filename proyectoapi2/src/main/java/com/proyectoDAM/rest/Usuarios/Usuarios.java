@@ -1,4 +1,4 @@
-package Users;
+package com.proyectoDAM.rest.Usuarios;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

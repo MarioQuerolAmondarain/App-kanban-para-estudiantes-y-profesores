@@ -1,4 +1,4 @@
-package Users;
+package com.proyectoDAM.rest.Usuarios;
 
 import java.sql.SQLException;
 
@@ -11,7 +11,7 @@ public class ProyectoApiUsuarios {
 
 	public static void main(String[] args) throws SQLException {
 	
-		SpringApplication.run(Users.ProyectoApiUsuarios.class, args);
+		SpringApplication.run(com.proyectoDAM.rest.Usuarios.ProyectoApiUsuarios.class, args);
 	
 	}
 }

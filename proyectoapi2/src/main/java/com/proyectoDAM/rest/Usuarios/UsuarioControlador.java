@@ -1,4 +1,4 @@
-package Users;
+package com.proyectoDAM.rest.Usuarios;
 
 import java.util.List;
 import java.util.Optional;

@@ -36,7 +36,7 @@ public class Usuarios {
 	private String apellido;
 	@Id
 	private String email;
-	private String contraseña;
+	private String contrasena;
 	/*
 	 * se va a relacionar el id del usuario con el id de rol por una tabla
 	 * intermedia, un usuario puede tener varios roles.
@@ -55,13 +55,13 @@ public class Usuarios {
 		super();
 	}
 
-	public Usuarios(Long id, String nombre, String apellido, String email, String contraseña) {
+	public Usuarios(Long id, String nombre, String apellido, String email, String contrasena) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 	}
 
 	public Long getId() {
@@ -96,22 +96,22 @@ public class Usuarios {
 		this.email = email;
 	}
 
-	public String getContraseña() {
+	public String getContrasena() {
 		
 		
-		return contraseña;
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
+	public void setContraseña(String contrasena) {
 	
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 	}
 	
-	public static String getSHA256(String contraseña) {
+	public static String getSHA256(String contrasena) {
 
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA3-256");
-			byte[] messageDigest = md.digest(contraseña.getBytes());
+			byte[] messageDigest = md.digest(contrasena.getBytes());
 			BigInteger number = new BigInteger(1, messageDigest);
 			String hashtext = number.toString(16);
 

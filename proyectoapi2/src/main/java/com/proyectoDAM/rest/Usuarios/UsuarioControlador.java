@@ -39,7 +39,7 @@ public class UsuarioControlador {
 		}
 		
 		
-		String contrasenaEncriptada=nuevo.getSHA256(nuevo.getContraseña());
+		String contrasenaEncriptada=Usuarios.getSHA256(nuevo.getContrasena());
 		nuevo.setContraseña(contrasenaEncriptada);
 		
 		Usuarios nuevoUsuario=service.crear(nuevo);
@@ -57,7 +57,7 @@ public class UsuarioControlador {
 		
 			
 				
-				if (usuario.getContraseña().equals(contrasenaEncriptada)){
+				if (usuario.getContrasena().equals(contrasenaEncriptada)){
 					return ResponseEntity.status(HttpStatus.OK).body("El login es correcto " );	
 					
 				}

@@ -3,7 +3,7 @@ package com.proyectoDAM.rest.Usuarios;
 public class AuthUser {
 
 	private String email;
-	private String contraseña;
+	private String contrasena;
 	
 	
 	public String getEmail() {
@@ -13,10 +13,10 @@ public class AuthUser {
 		this.email = email;
 	}
 	public String getContraseña() {
-		return contraseña;
+		return contrasena;
 	}
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContraseña(String contrasena) {
+		this.contrasena = contrasena;
 	}
 	
 	

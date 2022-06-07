@@ -109,7 +109,7 @@ public class ApiTarea {
 	}
 	
 	//Actualizar una tarea
-	@PatchMapping("actualizar-tarea")
+	@PostMapping("actualizar-tarea")
 	public ResponseEntity<Tarea> actualizarTarea(@RequestBody Tarea nuevaTarea) {
 		Long numId=nuevaTarea.getId();
 		List<Tarea> list=service.listTareas();

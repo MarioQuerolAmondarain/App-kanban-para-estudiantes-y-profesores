@@ -133,6 +133,6 @@ public class ApiTarea {
 	@DeleteMapping("eliminar-tarea")
 	public ResponseEntity<String> borrarTarea(@RequestParam Long id){
 		boolean success=service.deleteById(id);
-		return ResponseEntity.status(HttpStatus.OK).body("Se ha ejecutado la operación\nResultado : "+success);
+		return ResponseEntity.status(HttpStatus.OK).body(null);
 	}
 }

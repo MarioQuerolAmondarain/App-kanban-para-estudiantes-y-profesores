@@ -1,11 +1,17 @@
 package com.proyectoDAM.rest.proyectoapi2;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FechaEstado {
 	//Atributos
 	private Date fecha;
 	private EstadoTarea estado;
+	
+	public boolean mismoDia(Date fechaComprobar) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		return sdf.format(this.fecha).equals(sdf.format(fechaComprobar));
+	}
 	
 	//Getters and Setters
 	public Date getFecha() {
@@ -20,6 +26,6 @@ public class FechaEstado {
 	public void setEstado(EstadoTarea estado) {
 		this.estado = estado;
 	}
-	
+
 	
 }

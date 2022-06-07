@@ -96,12 +96,12 @@ public class ApiTarea {
 	
 	//Filtrar por Fecha y Estado
 	//Pasar el atributo "fecha" con la hora en la que fue creada, y no con la que aparece en BBBDD que es 2 horas más
-	@GetMapping("tareaPorFechaEstado") 
+	@PostMapping("tareaPorFechaEstado") 
 	public ResponseEntity<List<Tarea>> obtenerTareaPorFechaEstado(@RequestBody FechaEstado estadoFecha){
 		List<Tarea> list=service.listTareas();
 		List<Tarea> listaFiltrada=new ArrayList<>();
 		for (Tarea tarea : list) {
-			if (tarea.getEstado()==estadoFecha.getEstado() && tarea.getFechaLimite().compareTo(estadoFecha.getFecha())==0) {
+			if (tarea.getEstado()==estadoFecha.getEstado() && estadoFecha.mismoDia(tarea.getFechaLimite())) {
 				listaFiltrada.add(tarea);
 			}
 		}

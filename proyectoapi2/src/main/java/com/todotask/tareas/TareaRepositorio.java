@@ -1,4 +1,4 @@
-package com.proyectoDAM.rest.proyectoapi2;
+package com.todotask.tareas;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

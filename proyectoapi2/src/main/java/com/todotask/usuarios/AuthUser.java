@@ -1,4 +1,4 @@
-package com.proyectoDAM.rest.Usuarios;
+package com.todotask.usuarios;
 
 public class AuthUser {
 

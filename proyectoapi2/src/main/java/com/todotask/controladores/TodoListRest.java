@@ -1,4 +1,4 @@
-package clasesDistintas;
+package com.todotask.controladores;
 import java.util.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.proyectoDAM.rest.proyectoapi2.Proyectoapi2Application;
+
+import com.todotask.modelo.TodoList;
 @RestController 
 @RequestMapping("api/todoList/")
 

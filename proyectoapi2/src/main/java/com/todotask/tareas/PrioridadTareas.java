@@ -1,4 +1,4 @@
-package com.proyectoDAM.rest.proyectoapi2;
+package com.todotask.tareas;
 
 public enum PrioridadTareas {
 	SOMEDAY,

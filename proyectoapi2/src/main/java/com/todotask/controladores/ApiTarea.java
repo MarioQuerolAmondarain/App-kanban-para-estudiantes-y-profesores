@@ -1,10 +1,6 @@
-package com.proyectoDAM.rest.proyectoapi2;
-
-import java.text.SimpleDateFormat;
-import java.time.*;
-import java.time.format.*;
+package com.todotask.controladores;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 //import java.util.Date;
 import java.util.List;
 
@@ -21,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.todotask.tareas.EstadoTarea;
+import com.todotask.tareas.FechaEstado;
+import com.todotask.tareas.Tarea;
+import com.todotask.tareas.TareaServicio;
 
 //Cada controlador tiene una URL distinta
 @RestController
@@ -66,6 +67,11 @@ public class ApiTarea {
 		
 		Tarea tareaCreada=service.create(nuevaTarea);
 		return ResponseEntity.status(HttpStatus.OK).body(tareaCreada);
+	}
+
+	@GetMapping("test-tareas")
+	public String testTarea() {
+		return "OK";
 	}
 	
 	//Listar todas las tareas

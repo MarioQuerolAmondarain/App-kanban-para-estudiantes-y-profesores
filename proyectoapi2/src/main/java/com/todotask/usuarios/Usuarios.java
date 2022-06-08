@@ -1,4 +1,4 @@
-package com.proyectoDAM.rest.Usuarios;
+package com.todotask.usuarios;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -25,15 +25,14 @@ import javax.persistence.UniqueConstraint;
 																						// nombre indicado y la
 																						// constraint
 public class Usuarios {
-	// esta anotacion indica que el usuario id es el unico para todos los usuarios
-		// que creemos en la BD
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // es un incrementable el ID por eso tiene estrategia
-
+	// esta anotacion indica que el usuario id es el unico para todos los usuarios que cremos en la BD
+	
 	private Long id;
 	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "apellido")
 	private String apellido;
+	//@GeneratedValue(strategy = GenerationType.IDENTITY) // es un incrementable el ID por eso tiene estrategia
 	@Id
 	private String email;
 	private String contrasena;

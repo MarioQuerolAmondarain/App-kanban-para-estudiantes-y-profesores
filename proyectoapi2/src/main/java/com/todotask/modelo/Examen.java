@@ -1,7 +1,6 @@
-package clasesDistintas;
+package com.todotask.modelo;
 
 import java.util.Date;
-import com.proyectoDAM.rest.proyectoapi2.Proyectoapi2Application;
 
 public class Examen {
 	//Atributos

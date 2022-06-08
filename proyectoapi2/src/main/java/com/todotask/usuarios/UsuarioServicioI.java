@@ -1,4 +1,4 @@
-package com.proyectoDAM.rest.Usuarios;
+package com.todotask.usuarios;
 
 
 import java.util.List;
@@ -7,7 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.proyectoDAM.rest.proyectoapi2.Tarea;
+import com.todotask.tareas.Tarea;
+import com.todotask.usuarios.Usuarios;
+import com.todotask.usuarios.UsuariosRepositorio;
 
 @Service
 public class UsuarioServicioI{

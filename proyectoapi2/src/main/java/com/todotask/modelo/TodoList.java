@@ -1,5 +1,5 @@
-package clasesDistintas;
-import com.proyectoDAM.rest.proyectoapi2.Proyectoapi2Application;
+package com.todotask.modelo;
+
 public class TodoList {
 	
 	private int numero; 

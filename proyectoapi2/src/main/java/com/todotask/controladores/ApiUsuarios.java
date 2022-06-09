@@ -68,13 +68,13 @@ public class ApiUsuarios {
 			
 				
 				if (usuario.getContrasena().equals(contrasenaEncriptada)){
-					return ResponseEntity.status(HttpStatus.OK).body("El login es correcto " );	
+					return ResponseEntity.status(HttpStatus.OK).body(null);	
 					
 				}
 					
 		
 					
-			return ResponseEntity.status(HttpStatus.OK).body("El login es incorrecto \n"  );
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 	}	
 
 }

@@ -11,9 +11,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tareas")
 public class Tarea {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // es un incrementable el ID por eso tiene estrategia
+	
+	//Indica una columna con incremento automático, entonces la BD genera un nuevo valor con cada inserción.
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titulo;
 	private String descripcion;
@@ -21,10 +23,12 @@ public class Tarea {
 	private EstadoTarea estado;
 	private PrioridadTareas prioridad;
 	
+	//Constructor sin parámetros
 	public Tarea() {
 		super();
 	}
 
+	//Constructor con parámetros
 	public Tarea(Long id, String titulo, String descripcion, Date fechaLimite, EstadoTarea estado, PrioridadTareas prioridad) {
 		super();
 		this.id = id;
@@ -35,6 +39,7 @@ public class Tarea {
 		this.prioridad = prioridad;
 	}
 
+	//Getters and Setters
 	public String getTitulo() {
 		return titulo;
 	}
@@ -68,7 +73,6 @@ public class Tarea {
 	public PrioridadTareas getPrioridad() {
 		return prioridad;
 	}
-
 	public void setPrioridad(PrioridadTareas prioridad) {
 		this.prioridad = prioridad;
 	}

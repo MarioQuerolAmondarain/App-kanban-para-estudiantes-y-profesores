@@ -2,6 +2,7 @@ package com.todotask.modelo;
 
 import java.util.Date;
 
+/*Clase Examen se desarrolló al principio, pero luego se decidió no utilizarla*/
 public class Examen {
 	//Atributos
 	private int id;

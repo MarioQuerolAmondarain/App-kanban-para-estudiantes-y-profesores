@@ -11,6 +11,8 @@ import com.todotask.tareas.Tarea;
 import com.todotask.usuarios.Usuarios;
 import com.todotask.usuarios.UsuariosRepositorio;
 
+/*Esta clase es un servicio que se conecta a UsuariosRepositorio y agrupa su funcionalidad.*/
+
 @Service
 public class UsuarioServicioI{
 	

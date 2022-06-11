@@ -8,11 +8,6 @@ public class FechaEstado {
 	private Date fecha;
 	private EstadoTarea estado;
 	
-	public boolean mismoDia(Date fechaComprobar) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		return sdf.format(this.fecha).equals(sdf.format(fechaComprobar));
-	}
-	
 	//Getters and Setters
 	public Date getFecha() {
 		return fecha;
@@ -27,5 +22,9 @@ public class FechaEstado {
 		this.estado = estado;
 	}
 
-	
+	//Método que compara si las fechas son iguales
+	public boolean mismoDia(Date fechaComprobar) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		return sdf.format(this.fecha).equals(sdf.format(fechaComprobar));
+	}
 }

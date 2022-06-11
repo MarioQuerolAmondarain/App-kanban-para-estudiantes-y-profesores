@@ -12,8 +12,7 @@ import com.todotask.modelo.TodoList;
 @RestController 
 @RequestMapping("api/todoList/")
 
-
-
+/*Esta API se desarrolló al principio, pero luego se decidió no utilizarla*/
 public class TodoListRest {
 	
 	private static Collection<TodoList> elemento= Collections.synchronizedCollection(new ArrayList<>());	

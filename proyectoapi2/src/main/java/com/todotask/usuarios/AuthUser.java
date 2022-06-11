@@ -19,6 +19,4 @@ public class AuthUser {
 		this.contrasena = contrasena;
 	}
 	
-	
-	
 }

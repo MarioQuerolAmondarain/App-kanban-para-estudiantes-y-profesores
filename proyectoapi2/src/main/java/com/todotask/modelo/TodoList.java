@@ -1,5 +1,6 @@
 package com.todotask.modelo;
 
+/*Clase Examen se desarrolló al principio, pero luego se decidió no utilizarla*/
 public class TodoList {
 	
 	private int numero; 
@@ -7,10 +8,7 @@ public class TodoList {
 	private boolean estadoCompletado;
 	private String descripcion;
 	
-	
-	
-	public TodoList() {
-		
+	public TodoList() {	
 		super();
 	}
 	public String getDescripcion() {
@@ -38,5 +36,4 @@ public class TodoList {
 		this.estadoCompletado = estadoCompletado;
 	}
 
-	
 }

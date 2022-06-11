@@ -14,21 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.todotask.modelo.Examen;
 
-//Cada controlador tiene una URL distinta
 @RestController
-@RequestMapping("api/examen/")	//Es la URL (el mapping)
+@RequestMapping("api/examen/")
 
+/*ApiExamen se desarrolló al principio, pero luego se decidió no utilizarla*/
 public class ApiExamen {
 
 	private static Collection<Examen> examenes=Collections.synchronizedCollection(new ArrayList<>());//Usar Collection para sincronizar
 	
 	//Listar todos los examenes
-	@GetMapping("lista-examenes")//Pide algo
+	@GetMapping("lista-examenes")
 	public Collection<Examen> listarExamenes(){	
 		return examenes;
 	}
 	
-	//Listar un examen
+	//Mostrar un solo examen
 	@GetMapping("mostrar-examen")
 	public Examen mostrarExamen(@RequestParam int id) {
 		for (Examen examen : examenes) {
@@ -41,7 +41,7 @@ public class ApiExamen {
 	}
 	
 	//Crear un nuevo examen
-	@PostMapping("nuevo-examen")//Envío de Datos
+	@PostMapping("nuevo-examen")
 	public Collection<Examen> nuevoExamen(@RequestBody Examen nuevoExamen){
 		int id=nuevoExamen.getId();
 		
@@ -56,8 +56,8 @@ public class ApiExamen {
 		return examenes;
 	}
 	
-	//Editar un examen
-	@PatchMapping("modificar-examen") //Modifica al que indica
+	//Modificar un examen
+	@PatchMapping("modificar-examen") //Modifica al que indica según su id
 	public Examen modificarExamen(@RequestBody Examen nuevoExamen) {
 		int numId=nuevoExamen.getId();
 		
@@ -76,7 +76,7 @@ public class ApiExamen {
 		return null;		
 	}
 	
-	//Eliminar examen
+	//Eliminar un examen
 	@PostMapping("eliminar-examen")
 	public Collection<Examen> eliminarExamen(@RequestParam int id){
 		for (Examen examen : examenes) {

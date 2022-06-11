@@ -17,7 +17,7 @@ public class TodoListRest {
 	
 	private static Collection<TodoList> elemento= Collections.synchronizedCollection(new ArrayList<>());	
 
-	/**
+	/*
 	 * Incluir todas las tareas
 	 * @param nuevo
 	 * @return
@@ -29,7 +29,7 @@ public class TodoListRest {
 		return elemento;
 	}	
 	
-	/**
+	/*
 	 * Metodo que devuelve todas las tareas
 	 * @return
 	 */
@@ -37,7 +37,7 @@ public class TodoListRest {
 	public Collection<TodoList> listarTodasTareas(){	
 		return elemento;
 	}
-	/**
+	/*
 	 * Devolver tarea por identificador numero de la clase TodoList
 	 */
 	@GetMapping("Mostrar-item")
@@ -54,7 +54,7 @@ public class TodoListRest {
 		
 		return null;	
 	}
-	/**
+	/*
 	 * Realiza la modificacion o Update de una de las tareas de la lista. Localiza la tarea a modificar por el numero de la lista
 	 * @param UpdateItem
 	 * @return
@@ -77,7 +77,7 @@ public class TodoListRest {
 		}
 			return null;		
 	}
-	/**
+	/*
 	 * Realiza la modificacion o Update del estado de una de las tareas de la lista. Localiza la tarea a modificar por el numero de la lista
 	 * @param estadoCompletado 
 	 * @param UpdateEstado
@@ -98,7 +98,7 @@ public class TodoListRest {
 			
 			return null;
 	}
-	/**
+	/*
 	 * Elimina de la lista el elemento por id que se desea eliminar
 	 * @param estadoCompletado 
 	 * @param DeleteEstado

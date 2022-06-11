@@ -3,72 +3,39 @@ package com.todotask.usuarios;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Collection;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
-
 
 @Entity
-@Table(name = "usuario"/*, uniqueConstraints = @UniqueConstraint(columnNames = "email")*/) // Crea la tabla en la bd con el
-																						// nombre indicado y la
-																						// constraint
+@Table(name = "usuario") /* Crea la tabla en la bd con el */
+
 public class Usuarios {
-	// esta anotacion indica que el usuario id es el unico para todos los usuarios que cremos en la BD
-	
-	private Long id;
+
 	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "apellido")
 	private String apellido;
-	//@GeneratedValue(strategy = GenerationType.IDENTITY) // es un incrementable el ID por eso tiene estrategia
+	// esta anotacion indica que el usuario id es el unico para todos los usuarios
+	// que cremos en la BD
 	@Id
 	private String email;
 	private String contrasena;
-	/*
-	 * se va a relacionar el id del usuario con el id de rol por una tabla
-	 * intermedia, un usuario puede tener varios roles.
-	 */
-//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
-
-//	private Collection<Rol> roles;
-	// constructor completo
-
-
-
 	// constructor vacío
 
 	public Usuarios() {
 		super();
 	}
 
-	public Usuarios(Long id, String nombre, String apellido, String email, String contrasena) {
+	// constructor con parametros
+	public Usuarios(String nombre, String apellido, String email, String contrasena) {
 		super();
-		this.id = id;
+
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
 		this.contrasena = contrasena;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getNombre() {
@@ -96,16 +63,19 @@ public class Usuarios {
 	}
 
 	public String getContrasena() {
-		
-		
+
 		return contrasena;
 	}
 
 	public void setContraseña(String contrasena) {
-	
+
 		this.contrasena = contrasena;
 	}
-	
+
+	/*
+	 * Metodo getSha256 se encarga de realizar un Hash de las contraseñas antes de
+	 * almacenar en BD
+	 */
 	public static String getSHA256(String contrasena) {
 
 		try {
@@ -122,13 +92,5 @@ public class Usuarios {
 			throw new RuntimeException(e);
 		}
 	}
-
-//	public Collection<Rol> getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(Collection<Rol> roles) {
-//		this.roles = roles;
-//	}
 
 }

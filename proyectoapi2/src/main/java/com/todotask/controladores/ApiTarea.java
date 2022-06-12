@@ -108,6 +108,7 @@ public class ApiTarea {
 	// Eliminar una tarea por id
 	@DeleteMapping("eliminar-tarea")
 	public ResponseEntity<String> borrarTarea(@RequestParam Long id) {
+		boolean success=service.deleteById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(null);
 	}
 }

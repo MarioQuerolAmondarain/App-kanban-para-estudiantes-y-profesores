@@ -53,11 +53,11 @@ public class ApiUsuarios {
 		String contrasenaEncriptada = Usuarios.getSHA256(userAuth.getContraseña());
 
 		if (usuario.getContrasena().equals(contrasenaEncriptada)) {
-			return ResponseEntity.status(HttpStatus.OK).body(null);
+			return ResponseEntity.status(HttpStatus.OK).body("usuario y contraseña es correcto");
 
 		}
 
-		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Contraseña no coincide. Intentalo de nuevo");
 	}
 
 }
